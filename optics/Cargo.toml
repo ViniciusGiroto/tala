@@ -1,0 +1,16 @@
+[package]
+name = "optics"
+version = "0.1.0"
+edition = "2024"
+
+# Dependencies for GPU code
+[target.'cfg(target_arch = "spirv")'.dependencies]
+glam = { version = "0.29", default-features = false, features = ["libm"] }
+
+# Dependencies for CPU code
+[target.'cfg(not(target_arch = "spirv"))'.dependencies]
+glam = { version = "0.30", default-features = true, features = ["std", "mint"] }
+rayon = { version = "1.10" }
+
+[dependencies]
+encase = { version = "0.11", features = ["glam"] }
