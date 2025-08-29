@@ -1,0 +1,21 @@
+[workspace]
+resolver = "3"
+members = ["ui", "optics"]
+
+[profile.release]
+opt-level = 3
+strip = true
+lto = "fat"
+panic = "abort"
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+lto = false
+panic = "abort"
+codegen-units = 16
+
+# Dependencies for CPU and GPU code
+[workspace.dependencies]
+spirv-builder = "0.9"
+spirv-std = { git = "https://github.com/Rust-GPU/rust-gpu", rev = "86fc48032c4cd4afb74f1d81ae859711d20386a1" }
